@@ -333,14 +333,13 @@ body{
       </svg>
       카카오톡으로 공유하기
     </button>
-    <button class="btn-share-web" onclick="shareWeb()">
-      <!-- link icon -->
+    <button class="btn-share-web" onclick="shareGmail()">
+      <!-- mail icon -->
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-        <path d="M6.5 9.5L9.5 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        <path d="M7 5.5L8.8 3.7C9.9 2.6 11.7 2.6 12.8 3.7C13.9 4.8 13.9 6.6 12.8 7.7L11 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        <path d="M9 10.5L7.2 12.3C6.1 13.4 4.3 13.4 3.2 12.3C2.1 11.2 2.1 9.4 3.2 8.3L5 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <rect x="1.5" y="3.5" width="13" height="9" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
+        <polyline points="1.5,4.5 8,9.5 14.5,4.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-      링크 복사 / 다른 앱으로 공유
+      구글 메일로 결과 보내기
     </button>
     <button class="btn-retry" onclick="resetQuiz()">
       <!-- refresh icon -->
@@ -617,6 +616,25 @@ function shareKakao() {
     } catch (e) {}
   }
   shareWeb();
+}
+
+/* ── Gmail share ── */
+function shareGmail() {
+  if (!curLv) return;
+  var subject = '[AI 진단] ' + curLv.level + '형 · ' + score + '/40점';
+  var body =
+    'AI 활용 수준 진단 결과입니다.\n\n' +
+    '▶ 레벨: ' + curLv.level + '형\n' +
+    '▶ 점수: ' + score + '/40점\n' +
+    '▶ 단계: ' + curLv.label + '\n\n' +
+    curLv.desc + '\n\n' +
+    '진단 링크: ' + SHARE_URL;
+  window.open(
+    'https://mail.google.com/mail/?view=cm&fs=1&to=snjai321%40gmail.com' +
+    '&su=' + encodeURIComponent(subject) +
+    '&body=' + encodeURIComponent(body),
+    '_blank'
+  );
 }
 
 /* ── Web share / clipboard ── */
