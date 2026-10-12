@@ -4,544 +4,506 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>AI 활용 수준 진단</title>
-<meta name="description" content="10가지 일상·업무 상황에서 나의 AI 활용 수준을 4단계로 진단합니다.">
-<meta name="theme-color" content="#A3E635">
-<meta name="mobile-web-app-capable" content="yes">
+<meta name="description" content="일하면서 마주치는 10가지 상황으로 나의 AI 활용 수준을 4단계로 진단합니다. 2026년 10월 기준.">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="AI 수준 진단">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230F172A'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Arial' font-weight='bold' font-size='16' fill='%23A3E635'%3EAI%3C/text%3E%3C/svg%3E">
-<script src="https://developers.kakao.com/sdk/js/kakao.min.js" onerror="window._kakaoFailed=true"></script>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230A0A0A'/%3E%3Ctext x='16' y='21.5' text-anchor='middle' font-family='Arial' font-weight='bold' font-size='14' fill='%23FFFFFF'%3EAI%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 :root{
-  --lime:#A3E635;
-  --lime-dark:#84CC16;
-  --lime-dim:rgba(163,230,53,0.12);
-  --purple:#7C3AED;
-  --purple-dim:rgba(124,58,237,0.15);
-  --bg:#0F172A;
-  --card:#1E293B;
-  --card2:#293548;
-  --text:#F1F5F9;
-  --muted:#94A3B8;
-  --border:rgba(255,255,255,0.08);
+  --bg:#FFFFFF;
+  --sub:#F5F5F5;
+  --line:#E8E8E8;
+  --line-strong:#D4D4D4;
+  --ink:#0A0A0A;
+  --ink-2:#262626;
+  --muted:#6B6B6B;
+  --faint:#A3A3A3;
+  --r-lg:22px;
+  --r-md:16px;
+  --r-sm:12px;
 }
+html{background:var(--bg)}
 body{
-  font-family:'Noto Sans KR',sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  min-height:100vh;
-  min-height:100dvh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:16px;
+  font-family:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  background:var(--bg);color:var(--ink);
+  letter-spacing:-0.01em;line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;min-height:100dvh;
 }
-.wrap{width:100%;max-width:480px}
+button{font-family:inherit;color:inherit;letter-spacing:inherit}
+.page{max-width:1040px;margin:0 auto;padding:20px 16px 64px}
+.hidden{display:none!important}
 
-/* ── INTRO ── */
-.intro{text-align:center;padding:40px 24px}
-.intro .badge{
-  display:inline-block;
-  background:var(--lime-dim);
-  color:var(--lime);
-  font-size:12px;font-weight:700;
-  padding:6px 14px;border-radius:100px;
-  letter-spacing:.08em;margin-bottom:28px;
-  border:1px solid rgba(163,230,53,0.3);
-}
-.intro h1{font-size:26px;font-weight:700;line-height:1.4;margin-bottom:12px}
-.intro h1 span{color:var(--lime)}
-.intro p{color:var(--muted);font-size:15px;line-height:1.7;margin-bottom:32px}
-.info-row{display:flex;gap:12px;margin-bottom:32px;justify-content:center}
-.info-chip{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:10px 16px;
-  font-size:13px;color:var(--muted);
-  display:flex;align-items:center;gap:7px;
-}
-.info-chip strong{color:var(--text)}
-.info-chip svg{flex-shrink:0;opacity:.7}
-.btn-start{
-  width:100%;
-  background:var(--lime);
-  color:#0F172A;
-  font-size:17px;font-weight:700;
-  border:none;border-radius:14px;
-  padding:18px;cursor:pointer;
-  transition:opacity .15s,transform .1s;
-  font-family:'Noto Sans KR',sans-serif;
-}
-.btn-start:hover{opacity:.9}
-.btn-start:active{transform:scale(.98)}
+/* ── Header ── */
+.top{display:flex;align-items:center;justify-content:space-between;padding:4px 0 28px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:15px}
+.brand-mark{width:28px;height:28px;border-radius:8px;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:11px;font-weight:800;letter-spacing:0}
+.top-meta{font-size:13px;color:var(--muted)}
 
-/* ── PROGRESS ── */
-.progress-area{margin-bottom:28px}
-.progress-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.q-num{font-size:13px;color:var(--muted)}
-.q-num strong{color:var(--lime)}
-.progress-bar{height:4px;background:var(--card2);border-radius:100px;overflow:hidden}
-.progress-fill{height:100%;background:var(--lime);border-radius:100px;transition:width .4s cubic-bezier(.4,0,.2,1)}
-
-/* ── QUESTION ── */
-.q-area{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:28px 24px 24px;
+/* ── Type ── */
+.display{
+  font-size:clamp(36px,7.2vw,76px);font-weight:800;
+  letter-spacing:-0.045em;line-height:1.08;
+  margin:18px 0 36px;word-break:keep-all;
 }
-.q-tag{
-  display:inline-block;
-  background:var(--purple-dim);
-  color:#A78BFA;
-  font-size:11px;font-weight:700;
-  padding:4px 10px;border-radius:6px;
-  letter-spacing:.06em;margin-bottom:16px;
-}
-.q-text{font-size:17px;font-weight:500;line-height:1.6;margin-bottom:24px}
-.options{display:flex;flex-direction:column;gap:10px}
-.opt{
-  background:var(--card2);
-  border:1.5px solid transparent;
-  border-radius:12px;
-  padding:14px 16px;
-  font-size:15px;line-height:1.5;
-  cursor:pointer;
-  transition:border-color .15s,background .15s,transform .1s;
-  text-align:left;
-  font-family:'Noto Sans KR',sans-serif;
-  color:var(--text);
-}
-.opt:hover{border-color:rgba(163,230,53,0.5);background:rgba(163,230,53,0.06)}
-.opt:active{transform:scale(.98)}
-.opt.selected{border-color:var(--lime);background:rgba(163,230,53,0.1)}
-
-/* ── QUESTION TRANSITION ── */
-@keyframes qSlideIn{
-  from{opacity:0;transform:translateX(28px)}
-  to{opacity:1;transform:translateX(0)}
-}
-.q-area.q-enter{animation:qSlideIn .3s cubic-bezier(.2,0,.2,1) both}
-
-/* ── LOADING ── */
-.loading-wrap{
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  min-height:380px;gap:18px;text-align:center;padding:24px;
-}
-@keyframes spin{to{transform:rotate(360deg)}}
-.loading-spinner{
-  width:56px;height:56px;
-  border:4px solid rgba(163,230,53,0.15);
-  border-top-color:var(--lime);
-  border-radius:50%;
-  animation:spin .8s linear infinite;flex-shrink:0;
-}
-.loading-title{font-size:18px;font-weight:700;color:var(--text)}
-.loading-sub{font-size:14px;color:var(--muted);margin-top:-8px}
-@keyframes dotPulse{
-  0%,80%,100%{opacity:.25;transform:scale(.75)}
-  40%{opacity:1;transform:scale(1)}
-}
-.loading-dots{display:flex;gap:7px;align-items:center;margin-top:4px}
-.loading-dots span{
-  width:8px;height:8px;background:var(--lime);border-radius:50%;
-  animation:dotPulse 1.2s ease-in-out infinite;
-}
-.loading-dots span:nth-child(2){animation-delay:.16s}
-.loading-dots span:nth-child(3){animation-delay:.32s}
-
-/* ── RESULT ── */
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(14px)}
-  to{opacity:1;transform:translateY(0)}
-}
-#result.r-show .result{animation:fadeUp .45s cubic-bezier(.2,0,.2,1) both}
-.result{text-align:center;padding:8px 0}
-.result-accent-bar{height:5px;border-radius:100px;margin-bottom:24px;background:var(--lime)}
-.result-badge{
-  display:inline-block;background:var(--lime);color:#0F172A;
-  font-size:13px;font-weight:700;padding:8px 20px;border-radius:100px;margin-bottom:20px;
-}
-.result-icon{margin-bottom:20px;display:flex;justify-content:center;align-items:center}
-.result-level{font-size:28px;font-weight:700;margin-bottom:8px}
-.result-score{
+.display .soft{color:var(--faint)}
+.pill{
   display:inline-flex;align-items:center;gap:6px;
-  background:var(--card);border:1px solid var(--border);
-  border-radius:100px;padding:6px 16px;
-  font-size:14px;color:var(--muted);margin-bottom:24px;
+  border:1px solid var(--line);border-radius:100px;
+  padding:6px 13px;font-size:13px;color:var(--ink-2);font-weight:500;background:#fff;
 }
-.result-score strong{color:var(--lime);font-size:18px}
-.result-desc{
-  background:var(--card);border:1px solid var(--border);
-  border-radius:16px;padding:20px;margin-bottom:14px;
-  font-size:15px;line-height:1.7;color:var(--muted);text-align:left;
-}
-.result-desc strong{color:var(--text);display:block;margin-bottom:8px;font-size:16px}
-.result-keyword{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;justify-content:center}
-.kw{
-  background:var(--lime-dim);border:1px solid rgba(163,230,53,0.3);
-  color:var(--lime);font-size:13px;font-weight:500;
-  padding:6px 12px;border-radius:8px;
+.pill-dark{background:var(--ink);color:#fff;border-color:var(--ink);font-weight:700}
+.card-title{font-size:22px;font-weight:700;letter-spacing:-0.03em;margin-bottom:8px;word-break:keep-all}
+.card-sub{font-size:15.5px;color:var(--muted);line-height:1.65;word-break:keep-all}
+.label{font-size:13px;font-weight:600;color:var(--muted);margin-bottom:10px}
+
+/* ── Cards / grid ── */
+.grid{display:grid;grid-template-columns:1fr;gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:28px 24px}
+@media (min-width:760px){
+  .page{padding:28px 32px 80px}
+  .grid-2{grid-template-columns:1.1fr 1fr}
+  .grid-3{grid-template-columns:repeat(3,1fr)}
+  .span-2{grid-column:span 2}
+  .span-3{grid-column:span 3}
+  .card{padding:34px 34px}
 }
 
-/* ── NEXT STEP ── */
-.next-step{
-  background:var(--card);border:1px solid var(--border);
-  border-radius:14px;padding:16px 18px;margin-bottom:16px;
-  text-align:left;display:flex;align-items:flex-start;gap:12px;
-  position:relative;overflow:hidden;
-}
-.next-step::before{
-  content:'';position:absolute;left:0;top:0;bottom:0;
-  width:3px;background:var(--lime);
-}
-.ns-icon{flex-shrink:0;margin-top:1px;display:flex}
-.ns-label{font-size:11px;font-weight:700;color:var(--lime);letter-spacing:.08em;margin-bottom:5px}
-.ns-text{font-size:14px;line-height:1.65;color:var(--text)}
+/* ── Step rows (intro) ── */
+.rows{display:flex;flex-direction:column;gap:12px;margin-top:26px}
+.row{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:var(--r-md);padding:16px 18px}
+.tile{width:42px;height:42px;flex-shrink:0;border-radius:12px;border:1px solid var(--line);background:var(--sub);display:grid;place-items:center}
+.tile svg{width:20px;height:20px}
+.row-title{font-size:16px;font-weight:700;letter-spacing:-0.02em}
+.row-sub{font-size:13.5px;color:var(--muted)}
 
-/* ── SHARE BUTTONS ── */
-.btn-kakao{
-  width:100%;background:#FEE500;color:#191919;
-  font-size:15px;font-weight:700;border:none;border-radius:14px;
-  padding:16px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;
-  transition:opacity .15s,transform .1s;
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  margin-bottom:9px;
+/* ── Age chips ── */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 14px}
+.chip{
+  border:1px solid var(--line-strong);background:#fff;border-radius:100px;
+  padding:11px 18px;font-size:15px;font-weight:600;cursor:pointer;
+  transition:background .15s,color .15s,border-color .15s;
 }
-.btn-kakao:hover{opacity:.9}
-.btn-kakao:active{transform:scale(.98)}
-.btn-share-web{
-  width:100%;background:var(--card2);color:var(--text);
-  font-size:14px;font-weight:500;border:1px solid var(--border);
-  border-radius:14px;padding:14px;cursor:pointer;
-  font-family:'Noto Sans KR',sans-serif;
-  transition:background .15s,transform .1s;
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  margin-bottom:9px;
-}
-.btn-share-web:hover{background:rgba(255,255,255,0.06)}
-.btn-share-web:active{transform:scale(.98)}
-.btn-retry{
-  width:100%;background:transparent;color:var(--muted);
-  font-size:14px;font-weight:500;border:1px solid var(--border);
-  border-radius:14px;padding:14px;cursor:pointer;
-  font-family:'Noto Sans KR',sans-serif;
-  transition:background .15s;
-  display:flex;align-items:center;justify-content:center;gap:8px;
-}
-.btn-retry:hover{background:rgba(255,255,255,0.04)}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.note{font-size:13px;color:var(--faint);display:flex;align-items:center;gap:6px;margin-bottom:22px}
+.note svg{width:14px;height:14px;flex-shrink:0}
 
-/* ── TOAST ── */
+/* ── Buttons ── */
+.btn{
+  width:100%;display:flex;align-items:center;justify-content:center;gap:8px;
+  border-radius:100px;padding:17px 22px;font-size:16px;font-weight:700;cursor:pointer;
+  border:1px solid var(--ink);transition:opacity .15s,transform .1s,background .15s;
+}
+.btn:active{transform:scale(.985)}
+.btn svg{width:18px;height:18px}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-dark:hover{opacity:.86}
+.btn-dark:disabled{background:var(--line);border-color:var(--line);color:var(--faint);cursor:not-allowed;opacity:1}
+.btn-line{background:#fff;color:var(--ink);border-color:var(--line-strong)}
+.btn-line:hover{border-color:var(--ink)}
+.btn-text{background:none;border:none;color:var(--muted);font-size:14px;font-weight:600;padding:10px 4px;width:auto;display:inline-flex;gap:6px;cursor:pointer}
+.btn-text:hover{color:var(--ink)}
+.btn-text:disabled{visibility:hidden}
+.btn-text svg{width:16px;height:16px}
+
+/* ── Quiz ── */
+.quiz-wrap{max-width:680px;margin:0 auto}
+.q-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.q-count{font-size:14px;color:var(--muted);font-weight:600}
+.q-count b{color:var(--ink)}
+.bar{height:4px;background:var(--sub);border-radius:100px;overflow:hidden;margin-bottom:26px}
+.bar-fill{height:100%;background:var(--ink);border-radius:100px;transition:width .4s cubic-bezier(.4,0,.2,1)}
+.q-text{font-size:clamp(23px,4.4vw,32px);font-weight:700;letter-spacing:-0.035em;line-height:1.35;margin:4px 0 26px;word-break:keep-all}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{
+  display:flex;align-items:center;gap:14px;width:100%;text-align:left;
+  background:#fff;border:1px solid var(--line);border-radius:var(--r-md);
+  padding:15px 16px;cursor:pointer;font-size:15.5px;line-height:1.5;
+  transition:border-color .15s,background .15s,transform .1s;word-break:keep-all;
+}
+.opt:hover{border-color:var(--ink)}
+.opt:active{transform:scale(.99)}
+.opt-key{
+  width:36px;height:36px;flex-shrink:0;border-radius:10px;border:1px solid var(--line);
+  background:var(--sub);display:grid;place-items:center;font-size:14px;font-weight:700;color:var(--ink-2);
+  transition:background .15s,color .15s,border-color .15s;
+}
+.opt-text{flex:1}
+.opt-arrow{width:18px;height:18px;color:var(--faint);flex-shrink:0}
+.opt.selected{border-color:var(--ink);background:#FAFAFA}
+.opt.selected .opt-key{background:var(--ink);border-color:var(--ink);color:#fff}
+.q-foot{margin-top:18px;display:flex;justify-content:space-between;align-items:center}
+@keyframes qIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.q-enter{animation:qIn .32s cubic-bezier(.2,0,.2,1) both}
+
+/* ── Loading ── */
+.loading{min-height:52vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spinner{width:44px;height:44px;border:3px solid var(--line);border-top-color:var(--ink);border-radius:50%;animation:spin .8s linear infinite}
+.loading-title{font-size:20px;font-weight:700;letter-spacing:-0.03em}
+.loading-sub{font-size:14px;color:var(--muted);margin-top:-8px}
+
+/* ── Result ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.r-show .reveal{animation:fadeUp .5s cubic-bezier(.2,0,.2,1) both}
+.r-show .reveal:nth-child(2){animation-delay:.06s}
+.r-show .reveal:nth-child(3){animation-delay:.12s}
+.r-show .reveal:nth-child(4){animation-delay:.18s}
+.r-show .reveal:nth-child(5){animation-delay:.24s}
+
+.score-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.score-big{font-size:clamp(64px,10vw,88px);font-weight:800;letter-spacing:-0.05em;line-height:1}
+.score-big small{font-size:22px;font-weight:600;color:var(--faint);letter-spacing:-0.02em;margin-left:4px}
+.score-cap{font-size:15px;font-weight:600;color:var(--ink-2);margin-top:10px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:30px}
+.step-bar{height:8px;border-radius:100px;background:var(--line)}
+.step-bar.on{background:var(--ink)}
+.step-bar.past{background:var(--line-strong)}
+.step-name{font-size:12.5px;color:var(--faint);margin-top:8px;font-weight:600}
+.step-name.on{color:var(--ink)}
+
+.kws{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+
+.areas-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px;margin-bottom:20px}
+.areas-tags{display:flex;flex-wrap:wrap;gap:8px}
+.areas{display:grid;grid-template-columns:1fr;gap:4px 32px}
+@media (min-width:620px){.areas{grid-template-columns:1fr 1fr}}
+.area{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}
+.area-name{font-size:14.5px;font-weight:600;color:var(--ink-2)}
+.dots{display:flex;gap:5px}
+.dot{width:22px;height:8px;border-radius:100px;background:var(--line)}
+.dot.on{background:var(--ink)}
+
+.card-dark{background:var(--ink);border-color:var(--ink);color:#fff}
+.card-dark .label{color:rgba(255,255,255,.55)}
+.next-text{font-size:17px;font-weight:600;line-height:1.6;letter-spacing:-0.02em;word-break:keep-all}
+.next-icon{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.1);display:grid;place-items:center;margin-bottom:22px}
+.next-icon svg{width:20px;height:20px}
+
+.actions{display:grid;grid-template-columns:1fr;gap:10px}
+@media (min-width:760px){.actions{grid-template-columns:2fr 1fr}}
+.share-hint{font-size:12.5px;color:var(--faint);text-align:center;margin-top:12px}
+
+/* ── Toast ── */
 .toast{
-  position:fixed;bottom:28px;left:50%;
-  transform:translateX(-50%) translateY(20px);
-  background:rgba(30,41,59,.97);border:1px solid rgba(255,255,255,0.12);
-  color:var(--text);font-family:'Noto Sans KR',sans-serif;font-size:14px;
+  position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(16px);
+  background:var(--ink);color:#fff;font-size:14px;font-weight:600;
   padding:12px 22px;border-radius:100px;white-space:nowrap;
-  opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:9999;
+  opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:99;
 }
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-.hidden{display:none}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="page">
 
-<!-- INTRO -->
-<div class="intro" id="intro">
-  <div class="badge">✦ AI 활용 수준 진단</div>
-  <h1>나는 AI를<br><span>얼마나 활용하고 있을까?</span></h1>
-  <p>10가지 일상·업무 상황에서<br>나의 실제 반응을 선택하세요.<br>AI 활용 수준을 4단계로 진단해 드립니다.</p>
-  <div class="info-row">
-    <div class="info-chip">
-      <!-- clock -->
-      <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><circle cx="7.5" cy="7.5" r="6"/><polyline points="7.5,4.5 7.5,7.5 9.8,9.8"/></svg>
-      <strong>3분</strong> 소요
-    </div>
-    <div class="info-chip">
-      <!-- document -->
-      <svg width="13" height="15" viewBox="0 0 13 15" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><rect x="1.5" y="1.5" width="10" height="12" rx="1.5"/><line x1="4" y1="5.5" x2="9" y2="5.5"/><line x1="4" y1="8" x2="9" y2="8"/><line x1="4" y1="10.5" x2="7" y2="10.5"/></svg>
-      <strong>10문항</strong>
-    </div>
-    <div class="info-chip">
-      <!-- target -->
-      <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true"><circle cx="7.5" cy="7.5" r="6" stroke="currentColor" stroke-width="1.4"/><circle cx="7.5" cy="7.5" r="3" stroke="currentColor" stroke-width="1.4"/><circle cx="7.5" cy="7.5" r="1.3" fill="currentColor"/></svg>
-      <strong>4단계</strong> 결과
-    </div>
-  </div>
-  <button class="btn-start" onclick="startQuiz()">진단 시작하기 →</button>
-</div>
+  <header class="top">
+    <div class="brand"><span class="brand-mark">AI</span>AI 활용 수준 진단</div>
+    <div class="top-meta">2026년 10월 기준</div>
+  </header>
 
-<!-- QUIZ -->
-<div id="quiz" class="hidden">
-  <div class="progress-area">
-    <div class="progress-top">
-      <span class="q-num">질문 <strong id="cur">1</strong> / 10</span>
-      <span class="q-num" id="pct">0%</span>
-    </div>
-    <div class="progress-bar"><div class="progress-fill" id="fill" style="width:0%"></div></div>
-  </div>
-  <div class="q-area" id="qarea">
-    <span class="q-tag" id="qtag">상황</span>
-    <p class="q-text" id="qtext"></p>
-    <div class="options" id="opts"></div>
-  </div>
-</div>
+  <!-- ───────── INTRO ───────── -->
+  <section id="intro">
+    <span class="pill">10문항 · 약 3분 · 4단계 결과</span>
+    <h1 class="display">나는 AI를<br><span class="soft">어디까지</span> 쓰고 있을까?</h1>
 
-<!-- LOADING -->
-<div id="loading" class="hidden">
-  <div class="loading-wrap">
-    <div class="loading-spinner"></div>
-    <p class="loading-title">AI 활용 수준 분석 중</p>
-    <p class="loading-sub">잠시만 기다려 주세요</p>
-    <div class="loading-dots"><span></span><span></span><span></span></div>
-  </div>
-</div>
+    <div class="grid grid-2">
+      <div class="card">
+        <h2 class="card-title">이렇게 진행돼요</h2>
+        <p class="card-sub">정답은 없어요. 잘하고 싶은 모습 말고, 평소 내 모습에 가장 가까운 답을 골라 주세요.</p>
+        <div class="rows">
+          <div class="row">
+            <span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M7 9h10M7 13h10M7 17h6"/></svg></span>
+            <div><div class="row-title">일하면서 만나는 10가지 상황</div><div class="row-sub">문서, 회의, 자료 조사, 보안까지</div></div>
+          </div>
+          <div class="row">
+            <span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg></span>
+            <div><div class="row-title">상황마다 하나씩 선택</div><div class="row-sub">보기 순서는 매번 섞여서 나와요</div></div>
+          </div>
+          <div class="row">
+            <span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg></span>
+            <div><div class="row-title">4단계 진단과 다음 단계 추천</div><div class="row-sub">영역별 강점과 보완할 점도 함께</div></div>
+          </div>
+        </div>
+      </div>
 
-<!-- RESULT -->
-<div id="result" class="hidden">
-  <div class="result">
-    <div class="result-accent-bar" id="r-accent"></div>
-    <div class="result-badge">✦ 진단 완료</div>
-    <div class="result-icon" id="r-icon"></div>
-    <div class="result-level" id="r-level"></div>
-    <div class="result-score">총점 <strong id="r-score"></strong> / 40점</div>
-    <div class="result-desc" id="r-desc"></div>
-    <div class="result-keyword" id="r-kw"></div>
-    <div class="next-step">
-      <span class="ns-icon">
-        <!-- lightbulb -->
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-          <path d="M11 3C7.7 3 5 5.7 5 9C5 11.4 6.3 13.5 8 14.8V17H14V14.8C15.7 13.5 17 11.4 17 9C17 5.7 14.3 3 11 3Z" fill="#A3E635" opacity="0.85"/>
-          <path d="M8.5 18.5H13.5" stroke="#A3E635" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M9.5 20.5H12.5" stroke="#A3E635" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-      </span>
-      <div>
-        <div class="ns-label">다음 단계 추천</div>
-        <div class="ns-text" id="ns-text"></div>
+      <div class="card">
+        <h2 class="card-title">연령대를 선택해 주세요</h2>
+        <p class="card-sub">연령대별 결과를 비교하는 데만 써요.</p>
+        <div class="chips" id="ages" role="group" aria-label="연령대">
+          <button class="chip" aria-pressed="false" data-age="20대 이하">20대 이하</button>
+          <button class="chip" aria-pressed="false" data-age="30대">30대</button>
+          <button class="chip" aria-pressed="false" data-age="40대">40대</button>
+          <button class="chip" aria-pressed="false" data-age="50대">50대</button>
+          <button class="chip" aria-pressed="false" data-age="60대 이상">60대 이상</button>
+        </div>
+        <p class="note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          이름이나 연락처는 묻지 않아요
+        </p>
+        <button class="btn btn-dark" id="btn-start" disabled onclick="startQuiz()">
+          진단 시작하기
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
       </div>
     </div>
-    <button class="btn-kakao" onclick="shareKakao()">
-      <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M10 2.5C5.858 2.5 2.5 5.19 2.5 8.5c0 2.07 1.23 3.9 3.1 5.01l-.76 2.81c-.05.18.14.33.3.22L8.8 14.6c.38.06.77.1 1.2.1 4.142 0 7.5-2.69 7.5-6s-3.358-6-7.5-6z" fill="#191919"/>
-      </svg>
-      카카오톡으로 공유하기
-    </button>
-    <button class="btn-share-web" onclick="shareGmail()">
-      <!-- mail icon -->
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-        <rect x="1.5" y="3.5" width="13" height="9" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
-        <polyline points="1.5,4.5 8,9.5 14.5,4.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      구글 메일로 결과 보내기
-    </button>
-    <button class="btn-retry" onclick="resetQuiz()">
-      <!-- refresh icon -->
-      <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
-        <path d="M12.5 7.5A5 5 0 118 3c1.4 0 2.7.5 3.7 1.4L14 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M14 3v3.5h-3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      다시 진단하기
-    </button>
-  </div>
-</div>
+  </section>
+
+  <!-- ───────── QUIZ ───────── -->
+  <section id="quiz" class="hidden">
+    <div class="quiz-wrap">
+      <div class="q-head">
+        <span class="q-count">질문 <b id="q-cur">1</b> / 10</span>
+        <span class="pill" id="q-tag">상황</span>
+      </div>
+      <div class="bar"><div class="bar-fill" id="bar" style="width:0%"></div></div>
+      <div id="q-area">
+        <h2 class="q-text" id="q-text"></h2>
+        <div class="opts" id="opts"></div>
+      </div>
+      <div class="q-foot">
+        <button class="btn-text" id="btn-prev" onclick="prevQ()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+          이전 질문
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── LOADING ───────── -->
+  <section id="loading" class="hidden">
+    <div class="loading">
+      <div class="spinner"></div>
+      <p class="loading-title">응답을 분석하고 있어요</p>
+      <p class="loading-sub">잠시만 기다려 주세요</p>
+    </div>
+  </section>
+
+  <!-- ───────── RESULT ───────── -->
+  <section id="result" class="hidden">
+    <span class="pill" id="r-age"></span>
+    <h1 class="display" id="r-title"></h1>
+
+    <div class="grid grid-3">
+      <div class="card reveal">
+        <div class="score-top">
+          <div class="label">총점</div>
+          <span class="pill pill-dark" id="r-step"></span>
+        </div>
+        <div class="score-big"><span id="r-score">0</span><small>/ 40</small></div>
+        <div class="score-cap" id="r-label"></div>
+        <div class="steps" id="r-steps"></div>
+      </div>
+
+      <div class="card span-2 reveal">
+        <div class="label" id="r-desc-label"></div>
+        <h2 class="card-title" id="r-headline"></h2>
+        <p class="card-sub" id="r-desc"></p>
+        <div class="kws" id="r-kws"></div>
+      </div>
+
+      <div class="card span-2 reveal">
+        <div class="areas-head">
+          <div>
+            <div class="label">영역별 응답</div>
+            <h2 class="card-title" style="margin:0">어디가 강하고 어디를 채우면 될까요?</h2>
+          </div>
+          <div class="areas-tags" id="r-areas-tags"></div>
+        </div>
+        <div class="areas" id="r-areas"></div>
+      </div>
+
+      <div class="card card-dark reveal">
+        <span class="next-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.4 1 1.1 1 1.9V16h5v-.2c0-.8.4-1.5 1-1.9A6 6 0 0 0 12 3Z"/></svg></span>
+        <div class="label">다음 단계 추천</div>
+        <p class="next-text" id="r-next"></p>
+      </div>
+
+      <div class="span-3 reveal">
+        <div class="actions">
+          <button class="btn btn-dark" onclick="shareResult()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>
+            카카오톡·문자로 공유하기
+          </button>
+          <button class="btn btn-line" onclick="resetQuiz()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+            다시 진단하기
+          </button>
+        </div>
+        <p class="share-hint">휴대폰에서는 공유 창에서 카카오톡이나 문자를 고르면 돼요. PC에서는 결과와 링크가 복사돼요.</p>
+      </div>
+    </div>
+  </section>
 
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
-/* ── PWA manifest ── */
-(function () {
-  var icon = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='72' fill='%230F172A'/%3E%3Ctext x='256' y='330' text-anchor='middle' font-family='Arial%2Csans-serif' font-weight='700' font-size='260' fill='%23A3E635'%3EAI%3C%2Ftext%3E%3C%2Fsvg%3E";
-  var m = {name:"AI 활용 수준 진단",short_name:"AI 진단",description:"10가지 상황으로 진단하는 AI 활용 수준 테스트",start_url:"./",display:"standalone",background_color:"#0F172A",theme_color:"#A3E635",lang:"ko",icons:[{src:icon,sizes:"192x192",type:"image/svg+xml"},{src:icon,sizes:"512x512",type:"image/svg+xml",purpose:"any maskable"}]};
-  try{var b=new Blob([JSON.stringify(m)],{type:"application/manifest+json"});var l=document.createElement("link");l.rel="manifest";l.href=URL.createObjectURL(b);document.head.appendChild(l);}catch(e){}
-})();
+/* ── Config ── */
+var SHARE_URL = /^https?:/.test(location.protocol)
+  ? location.origin + location.pathname
+  : 'https://snjaicapabiliyies.vercel.app/';
+// 구글 시트 Apps Script 웹 앱 주소 (…/exec). 비어 있으면 저장하지 않음
+var SHEET_URL = 'https://script.google.com/macros/s/AKfycbzv2bkp4nzmrA97hPKFvINO7mPl5i9KwPpP4pg_LYaC38fX5u7MRdl9ApY3AEhTFxiMDw/exec';
 
-/* ── Config: 배포 후 교체 ── */
-var KAKAO_KEY = 'c112008fff441e1c08b8cef3a72c868a';
-var SHARE_URL = window.location.origin + '/';
-
-/* ── Kakao init ── */
-window.addEventListener('load', function () {
-  if (window.Kakao && !window._kakaoFailed && !Kakao.isInitialized()) {
-    try { Kakao.init(KAKAO_KEY); } catch (e) {}
-  }
-});
-
-/* ── Level icons (Flaticon-style inline SVG) ── */
-var ICON_BEGINNER = `<svg viewBox="0 0 72 72" width="72" height="72" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="36" cy="36" r="36" fill="rgba(148,163,184,0.1)"/>
-  <line x1="36" y1="57" x2="36" y2="33" stroke="#94A3B8" stroke-width="3" stroke-linecap="round"/>
-  <path d="M36 44C34 38 22 34 18 22C18 22 30 17 36 31Z" fill="#94A3B8"/>
-  <path d="M36 37C38 31 50 27 54 15C54 15 42 10 36 24Z" fill="#CBD5E1"/>
-</svg>`;
-
-var ICON_BASIC = `<svg viewBox="0 0 72 72" width="72" height="72" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="36" cy="36" r="36" fill="rgba(96,165,250,0.1)"/>
-  <line x1="36" y1="55" x2="36" y2="30" stroke="#60A5FA" stroke-width="3" stroke-linecap="round"/>
-  <ellipse cx="24" cy="33" rx="11" ry="6" fill="#60A5FA" transform="rotate(-28 24 33)"/>
-  <ellipse cx="48" cy="27" rx="11" ry="6" fill="#93C5FD" transform="rotate(28 48 27)"/>
-  <ellipse cx="36" cy="23" rx="10" ry="6" fill="#60A5FA"/>
-</svg>`;
-
-var ICON_PRACTICAL = `<svg viewBox="0 0 72 72" width="72" height="72" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="36" cy="36" r="36" fill="rgba(163,230,53,0.1)"/>
-  <rect x="32" y="44" width="8" height="13" rx="2" fill="rgba(163,230,53,0.4)"/>
-  <polygon points="36,13 50,32 22,32" fill="#A3E635"/>
-  <polygon points="36,22 52,43 20,43" fill="#84CC16"/>
-</svg>`;
-
-var ICON_EXPERT = `<svg viewBox="0 0 72 72" width="72" height="72" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="36" cy="36" r="36" fill="rgba(167,139,250,0.1)"/>
-  <path d="M36 13C36 13 24 24 24 38C24 43 27 46 30 48L36 54L42 48C45 46 48 43 48 38C48 24 36 13 36 13Z" fill="#A78BFA"/>
-  <circle cx="36" cy="35" r="5.5" fill="rgba(167,139,250,0.15)" stroke="#C4B5FD" stroke-width="2"/>
-  <path d="M30 48L24 55L27 44Z" fill="#6D28D9"/>
-  <path d="M42 48L48 55L45 44Z" fill="#6D28D9"/>
-  <path d="M33 54C33 57 36 60 36 60C36 60 39 57 39 54" fill="#FCA5A5"/>
-</svg>`;
-
-/* ── Data ── */
+/* ── 문항 (보기는 점수 순서 1→4로 적고, 화면에서는 섞어서 보여줌) ── */
 var Qs = [
-  {tag:"문서 작성", text:"업무 중 비슷한 형식의 보고서를 반복해서 작성해야 할 때, 나는?", opts:[
-    "매번 처음부터 직접 작성한다",
-    "예전 파일을 복사해서 수정한다",
-    "AI 도구에 내용을 입력해 초안을 받아본 적이 있다",
-    "AI로 초안을 만들고, 내가 검토·수정하는 흐름이 정착되어 있다"
+  {tag:'문서 작성', text:'보고서나 기획서 초안을 써야 할 때, 나는?', opts:[
+    '처음부터 끝까지 직접 쓴다',
+    '예전 문서를 복사해서 고쳐 쓴다',
+    'AI에게 초안을 받아 내가 다듬는다',
+    '참고 자료와 양식을 AI에 함께 주고, 초안부터 검토까지 AI와 나눠서 한다'
   ]},
-  {tag:"정보 검색", text:"새로운 업무나 주제에 대해 빠르게 파악해야 할 때, 나는?", opts:[
-    "네이버·구글에서 검색하거나 지인에게 물어본다",
-    "ChatGPT나 다른 AI에 질문해본 적이 있다",
-    "AI에 질문하되, 답변의 정확성을 다른 자료로 확인한다",
-    "AI에게 구조화된 질문을 던져 원하는 깊이의 정보를 얻는다"
+  {tag:'자료 조사', text:'처음 접하는 주제를 빠르게 파악해야 할 때, 나는?', opts:[
+    '포털 검색이나 주변 사람에게 물어본다',
+    'AI 챗봇에 한두 번 물어보고 끝낸다',
+    'AI 답변을 받은 뒤 중요한 내용은 출처를 따로 확인한다',
+    '딥리서치 기능으로 출처가 달린 보고서를 받고, 핵심만 골라 검증한다'
   ]},
-  {tag:"이메일·메시지", text:"정중하지만 단호하게 거절하는 이메일을 써야 할 때, 나는?", opts:[
-    "오래 고민하며 직접 쓴다",
-    "AI 도구를 써보고 싶지만 어떻게 써야 할지 모르겠다",
-    "AI에게 상황 설명 후 초안을 받아 내용을 수정한다",
-    "AI에게 역할·맥락·조건을 구체적으로 주고 바로 쓸 수 있는 결과물을 얻는다"
+  {tag:'회의 기록', text:'회의나 교육 내용을 정리해야 할 때, 나는?', opts:[
+    '손으로 메모하고 나중에 다시 정리한다',
+    '녹음은 해두지만 다시 듣는 일은 거의 없다',
+    'AI 녹음·요약 앱으로 회의록을 만든다',
+    'AI가 만든 회의록에서 할 일, 담당자, 일정까지 뽑아 바로 공유한다'
   ]},
-  {tag:"자료 요약", text:"30페이지 분량의 문서를 핵심만 파악해야 할 때, 나는?", opts:[
-    "처음부터 끝까지 직접 읽는다",
-    "AI로 요약이 가능하다는 건 알지만 써본 적은 없다",
-    "문서를 AI에 붙여넣어 요약을 받아봤다",
-    "요약 → 핵심 질문 → 심층 확인의 순서로 AI와 대화하며 분석한다"
+  {tag:'메일·민원', text:'정중하게 거절하는 메일이나 까다로운 민원 답변을 써야 할 때, 나는?', opts:[
+    '오래 고민하면서 직접 쓴다',
+    'AI를 써보고 싶지만 어떻게 부탁해야 할지 모르겠다',
+    '상황을 설명하고 AI 초안을 받아 고쳐 쓴다',
+    '상대, 목적, 말투를 정해 주고 여러 버전을 받아 비교한 뒤 고른다'
   ]},
-  {tag:"아이디어 발상", text:"기획안이나 콘텐츠 아이디어가 필요할 때, 나는?", opts:[
-    "혼자 생각하거나 동료와 브레인스토밍한다",
-    "AI가 아이디어를 준다는 건 알지만 결과가 뻔할 것 같아 안 쓴다",
-    "AI에게 아이디어를 요청하고 그중 좋은 것을 골라 발전시킨다",
-    "AI와 여러 차례 대화하며 아이디어를 구체화하고 검증한다"
+  {tag:'콘텐츠 제작', text:'홍보물이나 SNS 게시물이 필요할 때, 나는?', opts:[
+    '직접 만들거나 잘하는 사람에게 부탁한다',
+    '템플릿 사이트에서 골라 글자만 바꾼다',
+    'AI로 문구나 이미지를 만들어 쓴다',
+    '문구, 이미지, 카드뉴스까지 AI로 만들고 우리 기관 분위기에 맞게 손본다'
   ]},
-  {tag:"반복 업무", text:"매주 같은 형식의 데이터를 정리·보고해야 할 때, 나는?", opts:[
-    "매번 수작업으로 정리한다",
-    "엑셀 함수 정도는 쓰지만 AI 연동은 생각 못 해봤다",
-    "AI로 자동화 방법을 찾아보거나 시도해본 적이 있다",
-    "AI·자동화 도구를 연결해 반복 작업을 크게 줄여놨다"
+  {tag:'반복 업무', text:'매주 같은 형식으로 자료를 모아 보고해야 할 때, 나는?', opts:[
+    '매번 손으로 정리한다',
+    '엑셀 함수로 할 수 있는 만큼 줄인다',
+    'AI에게 수식이나 매크로를 만들어 달라고 해본 적이 있다',
+    'AI 에이전트나 자동화 도구로 수집부터 보고까지 이어 두었다'
   ]},
-  {tag:"AI 도구 인식", text:"요즘 새로운 AI 도구가 나왔다는 소식을 들었을 때, 나는?", opts:[
-    "관심 없거나 어렵게 느껴진다",
-    "흥미롭긴 한데 어떻게 써야 할지 모르겠다",
-    "일단 써보고 내 업무에 쓸 수 있을지 확인한다",
-    "어떤 업무에 적용할지 바로 떠오르고 실험해본다"
+  {tag:'나만의 AI', text:'AI를 쓸 때마다 같은 설명을 되풀이하게 된다면, 나는?', opts:[
+    'AI를 자주 쓰지 않아서 그런 일이 없다',
+    '매번 처음부터 다시 설명한다',
+    '자주 쓰는 질문을 메모해 두고 복사해서 쓴다',
+    '프로젝트나 맞춤 지침 기능으로 내 업무 전용 AI를 따로 만들어 쓴다'
   ]},
-  {tag:"SNS·콘텐츠", text:"홍보용 글이나 SNS 게시물을 만들어야 할 때, 나는?", opts:[
-    "직접 생각해서 쓴다",
-    "AI로 만들 수 있다는 건 알지만 어색할 것 같아 망설인다",
-    "AI 초안을 받아 내 스타일에 맞게 다듬어 사용한다",
-    "AI에게 타깃·톤·목적을 명확히 주고 바로 활용 가능한 결과를 얻는다"
+  {tag:'결과 검증', text:'AI가 준 답에 숫자나 사실 정보가 들어 있을 때, 나는?', opts:[
+    'AI 답은 믿기 어려워서 아예 잘 안 쓴다',
+    '그럴듯해 보이면 그대로 쓴다',
+    '중요한 부분은 검색해서 다시 확인한다',
+    '출처를 함께 달라고 하고, 원문과 대조한 뒤에만 쓴다'
   ]},
-  {tag:"문제 해결", text:"업무 중 낯선 문제나 오류가 생겼을 때, 나는?", opts:[
-    "구글 검색이나 주변 도움으로 해결한다",
-    "AI에 물어볼 수 있다는 건 알지만 어떻게 질문해야 할지 모른다",
-    "AI에게 상황을 설명하고 해결 방법을 찾아본다",
-    "AI와 단계적으로 원인을 좁혀가며 효율적으로 해결한다"
+  {tag:'보안·개인정보', text:'고객 명단이나 내부 자료를 AI로 분석하고 싶을 때, 나는?', opts:[
+    '별생각 없이 그대로 붙여넣는다',
+    '넣어도 되는지 몰라서 아예 시도하지 않는다',
+    '이름, 연락처 같은 개인정보는 지우고 넣는다',
+    '기관 지침과 AI 기본법을 확인하고, 허용된 도구에서 비식별 처리한 뒤 쓴다'
   ]},
-  {tag:"AI에 대한 태도", text:"AI가 내 직업이나 역할을 대체할 수 있다는 이야기를 들을 때, 나는?", opts:[
-    "불안하거나 거부감이 든다",
-    "걱정되지만 어떻게 대응해야 할지 모르겠다",
-    "AI를 배워서 내 능력을 보완해야 한다고 생각하고 공부 중이다",
-    "AI를 활용해 나만의 경쟁력을 이미 만들어가고 있다"
+  {tag:'새 도구', text:'새로운 AI 도구나 기능이 나왔다는 소식을 들으면, 나는?', opts:[
+    '관심이 없거나 어렵게 느껴진다',
+    '궁금하지만 직접 써보지는 않는다',
+    '일단 써보고 내 일에 맞는지 확인한다',
+    '써보고 쓸 만하면 바로 내 일에 넣고, 동료에게도 알려 준다'
   ]}
 ];
 
 var LEVELS = [
-  {
-    min:10, max:17, icon:ICON_BEGINNER, level:"입문", color:"#94A3B8",
-    label:"AI가 낯선 단계",
-    desc:"아직 AI 도구가 낯설거나 막연하게 느껴지는 단계입니다. 지금이 시작할 가장 좋은 타이밍이에요.",
-    kws:["관심 시작","AI 첫걸음","디지털 전환 준비"],
-    next:"ChatGPT에 오늘 궁금한 것 하나를 질문해보세요. 작은 경험 하나가 AI를 친근하게 만들어줍니다."
-  },
-  {
-    min:18, max:25, icon:ICON_BASIC, level:"기초", color:"#60A5FA",
-    label:"AI를 알지만 본격 활용 전 단계",
-    desc:"AI 도구의 존재는 알고 있지만 실제 업무에 자신 있게 쓰지는 못하는 단계입니다. 작은 시도 하나가 큰 전환점이 됩니다.",
-    kws:["기초 사용","도구 탐색","활용 준비"],
-    next:"업무 이메일이나 보고서 초안을 AI로 한 번 작성해보세요. 직접 비교해보면 AI 활용법이 눈에 보입니다."
-  },
-  {
-    min:26, max:33, icon:ICON_PRACTICAL, level:"실무", color:"#A3E635",
-    label:"AI를 업무에 활용하기 시작한 단계",
-    desc:"일부 업무에서 AI를 적극적으로 활용하고 있습니다. 프롬프트 설계와 업무 흐름 연결을 다듬으면 생산성이 크게 올라갑니다.",
-    kws:["실무 적용","프롬프트 설계","워크플로우 연결"],
-    next:"프롬프트 엔지니어링을 집중 학습해보세요. AI에게 역할·맥락·출력 형식을 구체적으로 지정하면 결과물 품질이 크게 달라집니다."
-  },
-  {
-    min:34, max:40, icon:ICON_EXPERT, level:"전문", color:"#A78BFA",
-    label:"AI를 일상·업무에 적극 적용하는 단계",
-    desc:"AI를 단순 도구가 아닌 업무 파트너로 활용하고 있습니다. 자동화·프롬프트 엔지니어링까지 체계를 갖춘 상위 활용자입니다.",
-    kws:["AI 자동화","프롬프트 엔지니어링","AX 선도자"],
-    next:"업무 자동화 파이프라인을 설계하고, 팀 내 AI 활용 가이드를 만들어 조직 전체로 AI 역량을 확산해보세요."
-  }
+  {min:10, max:17, step:1, level:'입문', label:'AI와 아직 낯선 사이',
+    headline:'시작하기 가장 좋은 때예요',
+    desc:'AI 도구가 아직 멀게 느껴지는 단계예요. 어렵게 배울 필요 없이, 오늘 하던 일 하나를 AI에게 물어보는 것부터 시작하면 됩니다.',
+    kws:['첫 사용','질문해 보기','두려움 줄이기'],
+    next:'오늘 할 일 하나를 골라 ChatGPT, Claude, Gemini 중 하나에 그대로 물어보세요. 무료 버전으로도 충분해요.'},
+  {min:18, max:25, step:2, level:'기초', label:'써봤지만 아직 손에 익지 않은 단계',
+    headline:'한 번 써본 것을 습관으로 바꿀 차례예요',
+    desc:'AI를 몇 번 써봤지만 업무에 자신 있게 쓰지는 못하는 단계예요. 자주 하는 일 하나에 꾸준히 써보면 금방 손에 익어요.',
+    kws:['반복 사용','초안 맡기기','확인하는 습관'],
+    next:'다음 주에 써야 할 메일이나 보고서 하나를 AI 초안으로 시작해 보세요. 내가 쓴 것과 비교하면 어디에 쓰면 좋을지 보여요.'},
+  {min:26, max:33, step:3, level:'실무', label:'일에 AI를 쓰기 시작한 단계',
+    headline:'잘 쓰는 방법을 정리해 둘 때예요',
+    desc:'여러 업무에서 AI를 실제로 쓰고 있어요. 잘 되는 질문 방식을 저장해 두고 반복 업무를 묶으면 시간이 눈에 띄게 줄어요.',
+    kws:['프롬프트 저장','업무 흐름 연결','결과 검증'],
+    next:'자주 하는 업무 하나를 골라 역할, 상황, 원하는 결과 형식을 담은 지시문을 만들고 프로젝트나 맞춤 지침 기능에 저장해 두세요.'},
+  {min:34, max:40, step:4, level:'전문', label:'AI와 함께 일하는 단계',
+    headline:'내 방식을 팀으로 넓힐 차례예요',
+    desc:'AI를 업무 파트너로 쓰고 있고, 검증과 보안까지 챙기는 단계예요. 이제는 혼자 잘 쓰는 것을 넘어 조직이 함께 쓰는 방식을 만들 수 있어요.',
+    kws:['AI 에이전트','업무 자동화','팀 가이드'],
+    next:'반복 업무를 AI 에이전트로 묶어 보고, 팀이 같이 쓸 AI 사용 지침을 만들어 보세요. 개인의 역량이 조직의 역량이 됩니다.'}
 ];
+var STEP_NAMES = ['입문','기초','실무','전문'];
+var KEYS = ['A','B','C','D'];
 
 /* ── State ── */
-var cur = 0, score = 0, curLv = null;
+var cur = 0, answers = [], age = '', curLv = null, total = 0, startedAt = 0;
 
-/* ── Quiz flow ── */
+/* ── Intro: 연령대 선택 ── */
+document.getElementById('ages').addEventListener('click', function (e) {
+  var b = e.target.closest('.chip');
+  if (!b) return;
+  this.querySelectorAll('.chip').forEach(function (c) { c.setAttribute('aria-pressed', 'false'); });
+  b.setAttribute('aria-pressed', 'true');
+  age = b.dataset.age;
+  document.getElementById('btn-start').disabled = false;
+});
+
+function show(id) {
+  ['intro','quiz','loading','result'].forEach(function (s) {
+    document.getElementById(s).classList.toggle('hidden', s !== id);
+  });
+  window.scrollTo(0, 0);
+}
+
 function startQuiz() {
-  document.getElementById('intro').classList.add('hidden');
-  document.getElementById('quiz').classList.remove('hidden');
+  if (!age) return;
+  cur = 0; answers = []; startedAt = Date.now();
+  show('quiz');
   renderQ(false);
 }
 
-function _renderContent() {
-  var q = Qs[cur];
-  document.getElementById('cur').textContent = cur + 1;
-  var pct = Math.round((cur / 10) * 100);
-  document.getElementById('pct').textContent = pct + '%';
-  document.getElementById('fill').style.width = pct + '%';
-  document.getElementById('qtag').textContent = q.tag;
-  document.getElementById('qtext').textContent = q.text;
-  var opts = document.getElementById('opts');
-  opts.innerHTML = '';
-  q.opts.forEach(function (t, i) {
-    var b = document.createElement('button');
-    b.className = 'opt'; b.textContent = t;
-    b.onclick = function () { pick(i + 1, b); };
-    opts.appendChild(b);
-  });
+function shuffle(arr) {
+  for (var i = arr.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+  }
+  return arr;
 }
 
 function renderQ(animate) {
-  var qa = document.getElementById('qarea');
-  if (!animate) { _renderContent(); return; }
-  qa.style.transition = 'opacity 0.12s ease';
-  qa.style.opacity = '0';
-  setTimeout(function () {
-    _renderContent();
-    qa.style.transition = 'none';
-    qa.style.opacity = '1';
-    qa.classList.remove('q-enter');
-    void qa.offsetWidth;
-    qa.classList.add('q-enter');
-  }, 130);
+  var q = Qs[cur];
+  document.getElementById('q-cur').textContent = cur + 1;
+  document.getElementById('q-tag').textContent = q.tag;
+  document.getElementById('bar').style.width = (cur / Qs.length * 100) + '%';
+  document.getElementById('q-text').textContent = q.text;
+  document.getElementById('btn-prev').disabled = cur === 0;
+
+  var order = shuffle([0, 1, 2, 3]);
+  var box = document.getElementById('opts');
+  box.innerHTML = '';
+  order.forEach(function (oi, pos) {
+    var b = document.createElement('button');
+    b.className = 'opt' + (answers[cur] === oi + 1 ? ' selected' : '');
+    b.innerHTML =
+      '<span class="opt-key">' + KEYS[pos] + '</span>' +
+      '<span class="opt-text"></span>' +
+      '<svg class="opt-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>';
+    b.querySelector('.opt-text').textContent = q.opts[oi];
+    b.onclick = function () { pick(oi + 1, b); };
+    box.appendChild(b);
+  });
+
+  if (animate) {
+    var a = document.getElementById('q-area');
+    a.classList.remove('q-enter'); void a.offsetWidth; a.classList.add('q-enter');
+  }
 }
 
 function pick(val, el) {
@@ -549,130 +511,129 @@ function pick(val, el) {
     o.classList.remove('selected'); o.style.pointerEvents = 'none';
   });
   el.classList.add('selected');
+  answers[cur] = val;
   setTimeout(function () {
-    score += val; cur++;
-    if (cur < 10) {
-      document.querySelectorAll('.opt').forEach(function (o) { o.style.pointerEvents = ''; });
-      renderQ(true);
-    } else {
-      showLoading();
-    }
-  }, 320);
+    cur++;
+    if (cur < Qs.length) renderQ(true);
+    else showLoading();
+  }, 280);
 }
 
-/* ── Loading ── */
+function prevQ() {
+  if (cur === 0) return;
+  cur--;
+  renderQ(true);
+}
+
 function showLoading() {
-  document.getElementById('quiz').classList.add('hidden');
-  document.getElementById('loading').classList.remove('hidden');
+  document.getElementById('bar').style.width = '100%';
+  show('loading');
   setTimeout(showResult, 1500);
 }
 
 /* ── Result ── */
 function showResult() {
-  document.getElementById('loading').classList.add('hidden');
-  var lv = null;
-  for (var i = 0; i < LEVELS.length; i++) {
-    if (score >= LEVELS[i].min && score <= LEVELS[i].max) { lv = LEVELS[i]; break; }
-  }
-  if (!lv) lv = LEVELS[LEVELS.length - 1];
-  curLv = lv;
+  total = answers.reduce(function (s, v) { return s + v; }, 0);
+  curLv = LEVELS.filter(function (l) { return total >= l.min && total <= l.max; })[0] || LEVELS[LEVELS.length - 1];
+  var lv = curLv;
 
-  document.getElementById('r-accent').style.background = lv.color;
-  document.getElementById('r-icon').innerHTML = lv.icon;
-  document.getElementById('r-level').innerHTML =
-    '<span style="color:' + lv.color + '">' + lv.level + '형</span> · ' + lv.label;
-  document.getElementById('r-score').textContent = score;
-  document.getElementById('r-desc').innerHTML =
-    '<strong>' + lv.level + '형이란?</strong>' + lv.desc;
-  document.getElementById('r-kw').innerHTML =
-    lv.kws.map(function (k) { return '<span class="kw">' + k + '</span>'; }).join('');
-  document.getElementById('ns-text').textContent = lv.next;
-  document.getElementById('fill').style.width = '100%';
+  document.getElementById('r-age').textContent = age + ' · 진단 완료';
+  document.getElementById('r-title').innerHTML = '<span class="soft">나는</span><br>AI ' + lv.level + '형';
+  document.getElementById('r-score').textContent = total;
+  document.getElementById('r-step').textContent = lv.step + '단계 · ' + lv.level;
+  document.getElementById('r-label').textContent = lv.label;
+  document.getElementById('r-steps').innerHTML = STEP_NAMES.map(function (n, i) {
+    var cls = i + 1 === lv.step ? 'on' : (i + 1 < lv.step ? 'past' : '');
+    return '<div><div class="step-bar ' + cls + '"></div><div class="step-name ' + (i + 1 === lv.step ? 'on' : '') + '">' + n + '</div></div>';
+  }).join('');
+
+  document.getElementById('r-desc-label').textContent = lv.level + '형은 이런 단계예요';
+  document.getElementById('r-headline').textContent = lv.headline;
+  document.getElementById('r-desc').textContent = lv.desc;
+  document.getElementById('r-kws').innerHTML = lv.kws.map(function (k) { return '<span class="pill">' + k + '</span>'; }).join('');
+
+  document.getElementById('r-areas').innerHTML = Qs.map(function (q, i) {
+    var dots = '';
+    for (var d = 1; d <= 4; d++) dots += '<span class="dot' + (d <= answers[i] ? ' on' : '') + '"></span>';
+    return '<div class="area"><span class="area-name">' + q.tag + '</span><span class="dots" aria-label="' + answers[i] + '점">' + dots + '</span></div>';
+  }).join('');
+
+  var hi = Math.max.apply(null, answers), lo = Math.min.apply(null, answers);
+  var tags = '';
+  if (hi !== lo) {
+    tags += '<span class="pill pill-dark">강점 · ' + Qs[answers.indexOf(hi)].tag + '</span>';
+    tags += '<span class="pill">보완 · ' + Qs[answers.indexOf(lo)].tag + '</span>';
+  }
+  document.getElementById('r-areas-tags').innerHTML = tags;
+
+  document.getElementById('r-next').textContent = lv.next;
+
+  saveResult();
 
   var res = document.getElementById('result');
   res.classList.remove('r-show');
-  res.classList.remove('hidden');
+  show('result');
   void res.offsetWidth;
   res.classList.add('r-show');
 }
 
-/* ── Kakao share ── */
-function shareKakao() {
-  if (!curLv) return;
-  var text = '🤖 AI 활용 수준 진단 결과\n\n나는 AI ' + curLv.level + '형 (' + score + '/40점)!\n' + curLv.label + '\n\n나도 진단받기 👇';
-  if (window.Kakao && !window._kakaoFailed && Kakao.isInitialized()) {
-    try {
-      var obj = {
-        objectType: 'text',
-        text: text,
-        link: { mobileWebUrl: SHARE_URL, webUrl: SHARE_URL }
-      };
-      if (Kakao.Share && Kakao.Share.sendDefault) {
-        Kakao.Share.sendDefault(obj);
-      } else if (Kakao.Link && Kakao.Link.sendDefault) {
-        Kakao.Link.sendDefault(obj);
-      }
-      return;
-    } catch (e) {}
-  }
-  shareWeb();
+/* ── Share ── */
+function resultText() {
+  return 'AI 활용 수준 진단 결과\n나는 AI ' + curLv.level + '형 (' + total + '/40점)\n' + curLv.label + '\n\n나도 진단해 보기 → ' + SHARE_URL;
 }
 
-/* ── Gmail share ── */
-function shareGmail() {
+function shareResult() {
   if (!curLv) return;
-  var subject = '[AI 진단] ' + curLv.level + '형 · ' + score + '/40점';
-  var body =
-    'AI 활용 수준 진단 결과입니다.\n\n' +
-    '▶ 레벨: ' + curLv.level + '형\n' +
-    '▶ 점수: ' + score + '/40점\n' +
-    '▶ 단계: ' + curLv.label + '\n\n' +
-    curLv.desc + '\n\n' +
-    '진단 링크: ' + SHARE_URL;
-  window.open(
-    'https://mail.google.com/mail/?view=cm&fs=1&to=snjai321%40gmail.com' +
-    '&su=' + encodeURIComponent(subject) +
-    '&body=' + encodeURIComponent(body),
-    '_blank'
-  );
-}
-
-/* ── Web share / clipboard ── */
-function shareWeb() {
-  if (!curLv) return;
-  var text = '🤖 AI 활용 수준 진단 결과\n나는 AI ' + curLv.level + '형 (' + score + '/40점)!\n' + curLv.label + '\n\n나도 진단받기 → ' + SHARE_URL;
+  var text = resultText();
   if (navigator.share) {
     navigator.share({ title: 'AI 활용 수준 진단', text: text })
-      .catch(function (e) { if (e.name !== 'AbortError') copyToClipboard(text); });
+      .catch(function (e) { if (e.name !== 'AbortError') copyText(text); });
   } else {
-    copyToClipboard(text);
+    copyText(text);
   }
 }
 
-function copyToClipboard(text) {
+/* ── 구글 시트 저장: 결과 화면이 뜰 때 자동으로 한 번 ── */
+function saveResult() {
+  if (!SHEET_URL) return;
+  var payload = {
+    age: age,
+    score: total,
+    level: curLv.level,
+    answers: answers.slice(),
+    seconds: Math.round((Date.now() - startedAt) / 1000)
+  };
+  // text/plain으로 보내야 Apps Script가 CORS 사전 요청 없이 받음
+  fetch(SHEET_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    keepalive: true,
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(payload)
+  }).catch(function () {});
+}
+
+function copyText(text) {
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(text)
-      .then(function () { showToast('결과가 클립보드에 복사되었습니다!'); })
-      .catch(function () { showToast('공유 기능을 지원하지 않는 환경입니다.'); });
+      .then(function () { toast('결과와 링크를 복사했어요'); })
+      .catch(function () { toast('복사하지 못했어요'); });
   } else {
-    showToast('공유 기능을 지원하지 않는 환경입니다.');
+    toast('이 브라우저에서는 공유를 지원하지 않아요');
   }
 }
 
-function showToast(msg) {
+function toast(msg) {
   var t = document.getElementById('toast');
   t.textContent = msg;
   t.classList.add('show');
-  setTimeout(function () { t.classList.remove('show'); }, 2600);
+  setTimeout(function () { t.classList.remove('show'); }, 2400);
 }
 
-/* ── Reset ── */
 function resetQuiz() {
-  cur = 0; score = 0; curLv = null;
-  var res = document.getElementById('result');
-  res.classList.add('hidden'); res.classList.remove('r-show');
-  document.getElementById('quiz').classList.add('hidden');
-  document.getElementById('intro').classList.remove('hidden');
+  cur = 0; answers = []; curLv = null; total = 0;
+  document.getElementById('result').classList.remove('r-show');
+  show('intro');
 }
 </script>
 </body>
